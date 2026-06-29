@@ -1,0 +1,40 @@
+folder structure:
+
+AI-Campus-Recruitment-Platform
+│
+├── backend/
+│   ├── apps/
+│   ├── config/
+│   │   ├── settings/
+│   │   │   ├── base.py
+│   │   │   ├── development.py
+│   │   │   ├── production.py
+│   │   │   └── __init__.py
+│   │   │   
+│   │   ├── urls.py
+│   │   ├── __init__.py
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   └── wsgi.py
+│   │
+│   ├── media/
+│   ├── static/
+│   ├── templates/
+│   ├── .env
+│   ├── manage.py
+│   └── venv/
+│
+├── frontend/
+├── docs/
+├── database/
+├── assets/
+├── .gitignore
+└── README.md
+
+What each folder is for:
+backend/ → Django + DRF project
+frontend/ → React application
+docs/ → SRS, API documentation, architecture diagrams
+database/ → SQL scripts, ER diagrams, sample data
+assets/ → Images, icons, logos, screenshots
+README.md → Project documentation
