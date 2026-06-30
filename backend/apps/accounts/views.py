@@ -1,17 +1,19 @@
 from rest_framework import status
 from rest_framework.permissions import AllowAny
-from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from core.base.api_view import BaseAPIView
 
 from core.responses import APIResponse
 
 from .serializers import (
     UserRegistrationSerializer,
     UserLoginSerializer,
+    UserLogoutSerializer,
 )
 from .services import AuthenticationService
 
 
-class UserRegistrationView(APIView):
+class UserRegistrationView(BaseAPIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -33,7 +35,7 @@ class UserRegistrationView(APIView):
         )
     
 
-class UserLoginView(APIView):
+class UserLoginView(BaseAPIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -64,3 +66,19 @@ class UserLoginView(APIView):
                 },
             },
         )    
+    
+
+class UserLogoutView(BaseAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = UserLogoutSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        AuthenticationService.logout_user(
+            serializer.validated_data["refresh"]
+        )
+
+        return APIResponse.success(
+            message="Logout successful."
+        )

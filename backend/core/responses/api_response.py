@@ -1,17 +1,16 @@
 from rest_framework.response import Response
-from rest_framework import status
 
 
 class APIResponse:
     """
-    Standard API Response Format
+    Standard API response format for the entire project.
     """
 
     @staticmethod
     def success(
         message="Success",
         data=None,
-        status_code=status.HTTP_200_OK,
+        status_code=200,
     ):
         return Response(
             {
@@ -25,9 +24,9 @@ class APIResponse:
 
     @staticmethod
     def error(
-        message="Error",
+        message="Validation failed.",
         errors=None,
-        status_code=status.HTTP_400_BAD_REQUEST,
+        status_code=400,
     ):
         return Response(
             {
